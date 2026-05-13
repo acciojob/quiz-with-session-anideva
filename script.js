@@ -28,7 +28,7 @@ btn.addEventListener("click" , ()=> {
     }
   }
   //displaying of score 
-  scoreElement.innerHTML= `Your score is ${score} out of 5`;
+  scoreElement.innerHTML= `Your score is ${score} out of 5.`;
 
   //save to local storage
   localStorage.setItem('score', score);
