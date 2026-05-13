@@ -1,5 +1,38 @@
-//your JS code here.
 
+
+//your JS code here.
+const questionsElement = document.getElementById("questions");
+const btn= document.getElementById("submit");
+const scoreElement = document.getElementById("score");
+const userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(5).fill(null);
+
+
+questionsElement.addEventListener("change" ,(e) =>{
+  //which question was answered
+  const questionIndex= parseInt(e.target.name.split("-")[1]);
+   //write answer in correct slot of notebook(example) and store to the session storage
+   userAnswers[questionIndex]=e.target.value;
+   //saves the answer in the correct slot of sessionstorage such as 0 1 2 ...
+   sessionStorage.setItem("progress", JSON.stringify(userAnswers));
+
+});
+
+//add event listner for the button once it is clicked 
+btn.addEventListener("click" , ()=> {
+  //calculating the score 
+  let score =0;
+
+  for(let i = 0;i<questions.length; i++) {
+    if(userAnswers[i]===questions[i].answer){
+      score++;
+    }
+  }
+  //displaying of score 
+  scoreElement.innerHTML= `Your score is ${score} out of 5`;
+
+  //save to local storage
+  localStorage.setItem('score', score);
+})
 // Do not change code below this line
 // This code will just display the questions to the screen
 const questions = [
